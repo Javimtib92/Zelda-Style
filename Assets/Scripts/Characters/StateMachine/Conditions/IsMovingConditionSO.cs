@@ -33,6 +33,6 @@ public class IsMovingCondition : Condition
 
 	public override void OnStateExit()
 	{
-		_characterScript.movementVector = Vector3.zero;
+		_characterScript.movementVector = Vector2.zero;
 	}
 }

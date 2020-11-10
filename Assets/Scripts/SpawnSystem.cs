@@ -12,13 +12,11 @@ public class SpawnSystem : MonoBehaviour
 	[SerializeField] private Protagonist _playerPrefab = null;
 
 	[Header("Scene References")]
+	[SerializeField] private CinemachineVirtualCamera _camera;
 	[SerializeField] private Transform[] _spawnLocations;
-
-	[SerializeField] private CinemachineVirtualCamera _cameraManager = default;
 
 	void Start()
 	{
-		Debug.Log("awakening");
 		try
 		{
 			Spawn(_defaultSpawnIndex);
@@ -34,6 +32,9 @@ public class SpawnSystem : MonoBehaviour
 		AutoFill();
 	}
 
+	/// <summary>
+	/// This function tries to autofill some of the parameters of the component, so it's easy to drop in a new scene
+	/// </summary>
 	[ContextMenu("Attempt Auto Fill")]
 	private void AutoFill()
 	{
@@ -48,9 +49,7 @@ public class SpawnSystem : MonoBehaviour
 		Transform spawnLocation = GetSpawnLocation(spawnIndex, _spawnLocations);
 		Protagonist playerInstance = InstantiatePlayer(_playerPrefab, spawnLocation);
 
-		Debug.Log(spawnLocation);
-		Debug.Log(playerInstance);
-		_cameraManager.Follow = playerInstance.transform;
+		_camera.Follow = playerInstance.transform;
 	}
 
 	private Transform GetSpawnLocation(int index, Transform[] spawnLocations)

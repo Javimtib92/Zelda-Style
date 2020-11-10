@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// <para>This class is a data holder that the <c>StateMachine</c> class uses to deposit data that needs to be shared between states.
@@ -10,6 +11,8 @@ public class Character : MonoBehaviour
 	[HideInInspector] public Vector2 movementInput; //Initial input coming from the Protagonist script
 	[HideInInspector] public Vector2 movementVector; //Final movement vector, manipulated by the StateMachine actions
 	[HideInInspector] public Vector2 faceDirection; //Face direction determined by the last movementVector
+	[HideInInspector] public List<Transform> wayPointList;
+	[HideInInspector] public int nextWayPoint = 0;
 
 	//---- COMMANDS ISSUED BY OTHER SCRIPTS ----
 	public void Move(Vector2 movement)

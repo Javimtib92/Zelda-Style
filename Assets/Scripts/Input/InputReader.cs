@@ -11,21 +11,21 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
 	public event UnityAction pauseEvent;
 	public event UnityAction<Vector2> moveEvent;
 
-	public GameInput GameInput { get; set; }
+	public GameInput gameInput;
 
 	private void OnEnable()
 	{
-		if (GameInput == null)
+		if (gameInput == null)
 		{
-			GameInput = new GameInput();
-			GameInput.Gameplay.SetCallbacks(this);
+			gameInput = new GameInput();
+			gameInput.Gameplay.SetCallbacks(this);
 		}
-		GameInput.Gameplay.Enable();
+		gameInput.Gameplay.Enable();
 	}
 
 	private void OnDisable()
 	{
-		GameInput.Gameplay.Disable();
+		gameInput.Gameplay.Disable();
 	}
 
 	public void OnAttack(InputAction.CallbackContext context)
